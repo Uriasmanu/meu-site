@@ -19,6 +19,7 @@ body {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     color: var(--dark);
     line-height: 1.6;
+    overflow-x: hidden; /* Importante: previne scroll horizontal */
 }
 
 .container {
@@ -104,11 +105,22 @@ body {
     display: flex;
     align-items: center;
     min-height: 100vh;
+    width: 100%;
+    overflow: hidden; /* Importante: contém elementos filhos */
+}
+
+.hero .container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 100%; /* Permite que o container se ajuste */
+    padding: 2rem;
 }
 
 .hero-content {
     flex: 1;
-    padding-right: 2rem;
+    padding: 2rem;
+    max-width: 100%;
 }
 
 .main-title {
@@ -119,6 +131,7 @@ body {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    word-wrap: break-word;
 }
 
 .subtitle {
@@ -136,6 +149,7 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     max-width: 500px;
     border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 100%;
 }
 
 .email-form {
@@ -152,6 +166,7 @@ body {
     background: rgba(255, 255, 255, 0.8);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     transition: var(--transition);
+    width: 100%;
 }
 
 .email-form input:focus {
@@ -174,6 +189,7 @@ body {
     justify-content: center;
     gap: 0.5rem;
     box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+    width: 100%;
 }
 
 .cta-button:hover {
@@ -201,6 +217,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 100%;
 }
 
 .phone-mockup {
@@ -212,6 +229,7 @@ body {
     position: relative;
     overflow: hidden;
     border: 10px solid #2E3A59;
+    max-width: 100%; /* Garante que não ultrapasse o container */
 }
 
 .phone-screen {
@@ -240,8 +258,7 @@ body {
 .features {
     padding: 100px 0;
     background: white;
-width: 100%;
-
+    width: 100%;
 }
 
 .section-title {
@@ -269,7 +286,7 @@ width: 100%;
 
 .feature-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 10px 15px 40px rgba(0, 0, 0, 0.1);
 }
 
 .feature-card i {
@@ -401,15 +418,31 @@ width: 100%;
     .hero {
         flex-direction: column;
         text-align: center;
+        padding: 100px 0 60px;
+    }
+    
+    .hero .container {
+        flex-direction: column;
     }
     
     .hero-content {
         padding-right: 0;
         margin-bottom: 3rem;
+        width: 100%;
     }
     
     .main-title {
         font-size: 2.8rem;
+    }
+    
+    .hero-image {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .phone-mockup {
+        width: 280px;
+        height: 560px;
     }
 }
 
@@ -438,10 +471,57 @@ width: 100%;
         font-size: 2.2rem;
     }
     
+    .hero {
+        padding: 90px 0 40px;
+    }
+    
+    .hero-content {
+        padding: 0 15px;
+    }
+    
+    .email-form-container {
+        margin: 0 auto;
+        padding: 1.5rem;
+    }
+    
+    .phone-mockup {
+        width: 250px;
+        height: 500px;
+        margin: 0 auto;
+    }
+    
     .footer-content {
         flex-direction: column;
         gap: 1.5rem;
         text-align: center;
+    }
+    
+    /* Correção para a seção Features em mobile */
+    .features {
+        padding: 60px 0;
+        width: 100%;
+    }
+    
+    .features .container {
+        padding: 0 15px;
+        width: 100%;
+    }
+    
+    .section-title {
+        padding: 0 15px;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        width: 100%;
+    }
+    
+    .feature-card {
+        margin: 0;
+        padding: 2rem 1.5rem;
     }
 }
 
@@ -451,11 +531,66 @@ width: 100%;
     }
     
     .section-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+    
+    .hero {
+        padding: 80px 0 30px;
     }
     
     .phone-mockup {
-        width: 250px;
-        height: 500px;
+        width: 220px;
+        height: 440px;
+        border-width: 8px;
+    }
+    
+    .phone-screen {
+        padding: 1.5rem;
+    }
+    
+    .phone-screen h3 {
+        font-size: 1.2rem;
+    }
+    
+    .phone-screen p {
+        font-size: 0.8rem;
+    }
+    
+    /* Ajustes adicionais para mobile muito pequeno */
+    .features .container {
+        padding: 0 10px;
+    }
+    
+    .features-grid {
+        padding: 0;
+    }
+    
+    .feature-card {
+        margin: 0;
+        padding: 1.5rem 1rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+
+/* Correção extra para telas muito pequenas */
+@media (max-width: 400px) {
+    .phone-mockup {
+        width: 200px;
+        height: 400px;
+    }
+    
+    .main-title {
+        font-size: 1.6rem;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .hero-content {
+        padding: 0 10px;
     }
 }
