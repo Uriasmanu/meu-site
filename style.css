@@ -1,0 +1,403 @@
+/* Paleta de Cores:
+   - Azul Marinho Escuro (Fundo principal): #0E1628
+   - Azul Marinho/Roxo (Hero Background): #1B263B
+   - Ciano/Azul Claro (Destaque/CTA): #00DDEB (mais brilhante) | #4A90E2 (mais sóbrio)
+   - Texto: #EAEAEA (claro)
+*/
+
+:root {
+    --primary-color: #4A90E2; /* Azul sóbrio */
+    --secondary-color: #00DDEB; /* Ciano de destaque */
+    --background-dark: #0E1628;
+    --background-medium: #1B263B;
+    --text-light: #EAEAEA;
+    --text-dark: #0E1628;
+    --card-bg: rgba(255, 255, 255, 0.05); /* Para cards e glassmorphism */
+}
+
+/* Base e Tipografia */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografia clean e legível */
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 1.5em;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+section {
+    padding: 60px 5%;
+}
+
+/* --- Cabeçalho --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(14, 22, 40, 0.9); /* Fundo semi-transparente */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 900;
+    color: var(--secondary-color);
+}
+
+.nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+.nav a:hover {
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+/* --- Hero Section --- */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 100px;
+    background: linear-gradient(135deg, var(--background-medium) 0%, var(--background-dark) 100%);
+}
+
+.hero-content {
+    max-width: 600px;
+    padding: 20px;
+}
+
+.main-title {
+    font-size: 3.5em;
+    margin-bottom: 0.3em;
+}
+
+.main-title strong {
+    color: var(--secondary-color);
+}
+
+.subtitle {
+    font-size: 1.3em;
+    color: #aebedb;
+    margin-bottom: 1.5em;
+}
+
+/* Glassmorphism e Formulário Clean */
+.email-form-container {
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px); /* Efeito Glassmorphism sutil */
+    -webkit-backdrop-filter: blur(4px);
+    background: rgba(27, 38, 59, 0.7); /* Fundo levemente transparente */
+}
+
+.email-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; /* Para mobile */
+}
+
+.email-form input[type="email"] {
+    flex-grow: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    font-size: 1em;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    min-width: 200px; /* Garante que o input não fique muito estreito */
+}
+
+.email-form input[type="email"]:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 2px var(--secondary-color);
+}
+
+.cta-button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); /* Gradiente */
+    color: var(--text-dark);
+    font-weight: 700;
+    font-size: 1em;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Microanimações nos Botões */
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 221, 235, 0.4);
+}
+
+.cta-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.form-message {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.form-message.success {
+    color: #4CAF50;
+    opacity: 1;
+}
+
+.form-message.error {
+    color: #F44336;
+    opacity: 1;
+}
+
+/* --- Features Section --- */
+.features {
+    background-color: var(--background-dark);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.feature-card {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-top: 3px solid var(--primary-color);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.feature-card i {
+    font-size: 2.5em;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* --- Galeria de Screenshots --- */
+.gallery {
+    background-color: var(--background-medium);
+}
+
+.screenshots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Grid Responsivo */
+    gap: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.screenshot-item {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, opacity 0.3s, box-shadow 0.3s;
+}
+
+/* Efeito Hover Sutil */
+.screenshot-item:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+    box-shadow: 0 8px 15px rgba(0, 221, 235, 0.2);
+}
+
+/* --- Modal (Visualização Ampliada) --- */
+.modal {
+    display: none; /* Oculto por padrão */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding-top: 60px;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 90%;
+    max-width: 400px; /* Largura máxima para screenshots de celular */
+    border-radius: 10px;
+    animation: zoom 0.6s;
+}
+
+@keyframes zoom {
+    from {transform: scale(0);}
+    to {transform: scale(1);}
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: var(--secondary-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: #080D17;
+    padding: 30px 5%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-info {
+    font-size: 0.9em;
+}
+
+.footer-info i {
+    color: #F44336; /* Coração vermelho */
+    margin: 0 3px;
+}
+
+.social-icons a {
+    color: var(--text-light);
+    font-size: 1.5em;
+    margin-left: 20px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--secondary-color);
+}
+
+/* --- Responsividade (Mobile) --- */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav {
+        margin-top: 10px;
+    }
+
+    .nav a {
+        margin-left: 0;
+        margin-right: 15px;
+        font-size: 0.9em;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 80px;
+    }
+
+    .main-title {
+        font-size: 2.5em;
+    }
+
+    .subtitle {
+        font-size: 1.1em;
+    }
+
+    .email-form {
+        flex-direction: column;
+    }
+
+    .cta-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    h2 {
+        font-size: 2em;
+        margin-bottom: 1em;
+    }
+
+    .screenshot-item {
+        max-width: 80%; /* Centraliza e diminui a imagem */
+        margin: 0 auto;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .social-icons a {
+        margin: 0 10px;
+    }
+}
