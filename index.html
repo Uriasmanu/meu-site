@@ -1,112 +1,136 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flash Cards - Ajude a Testar e Melhorar o App de Estudos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flash Cards - Ajude a Testar e Melhorar o App de Estudos</title>
+
+  <!-- Ícone SVG -->
+  <link rel="icon" type="image/x-icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%236367f1;stop-opacity:1' /><stop offset='100%' style='stop-color:%238B5CF6;stop-opacity:1' /></linearGradient></defs><rect x='20' y='20' width='60' height='60' rx='12' fill='url(%23grad)'/><rect x='30' y='30' width='40' height='40' rx='6' fill='white'/><path d='M45 45 L55 45 L55 55 L45 55 Z' fill='url(%23grad)'/></svg>">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
 </head>
+
 <body>
-    <header class="header">
-        <div class="container header-content">
-            <div class="logo">Flash Cards<span>App</span></div>
-            <nav class="nav" id="nav">
-                <a href="#hero">Início</a>
-                <a href="#features">Recursos</a>
-                <a href="#gallery">Galeria</a>
-            </nav>
-            <button class="mobile-menu-btn" id="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </header>
-
-    <section id="hero" class="hero">
-        <div class="container" style="display: flex; align-items: center;">
-            <div class="hero-content">
-                <h1 class="main-title animate-slide-up">Seu Estudo Mais Eficaz: <br>Chegou o Flash Cards App!</h1>
-                <p class="subtitle animate-slide-up">Estamos finalizando o app para revolucionar seus estudos. **Ajude-nos a testar** a versão beta e contribua com melhorias.</p>
-                <div class="email-form-container glassmorphism animate-slide-up">
-                    <form id="email-form" class="email-form">
-                        <input type="email" id="email" name="email" placeholder="Seu melhor e-mail para acesso" required aria-label="Endereço de e-mail">
-                        <button type="submit" class="cta-button" id="cta-button">
-                            <i class="fas fa-rocket"></i> Quero Acesso Antecipado!
-                        </button>
-                    </form>
-                    <p id="form-message" class="form-message" aria-live="polite"></p>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="phone-mockup">
-                    <div class="phone-screen">
-                        <img src="/icon.png"/>
-                        <h3>Flash Cards</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-     <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">O que o Flash Cards Oferece?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-book-open"></i>
-                    <h3>Criação Ilimitada</h3>
-                    <p>Crie quantos flash cards precisar para dominar todas as suas matérias.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Estude Onde Estiver</h3>
-                    <p>Seus flash cards disponíveis no seu celular Android, para estudar a qualquer hora e lugar.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-chart-pie"></i>
-                    <h3>Acompanhe seu Progresso</h3>
-                    <p>Tenha métricas claras sobre seu desempenho e o que precisa revisar mais a fundo.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-comments"></i>
-                    <h3>Sua Ajuda é Vital</h3>
-                    <p>Ao ser um testador, suas sugestões e feedbacks serão cruciais para o lançamento final do app!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <h2 class="section-title">Veja o BioLink em Ação</h2>
-            <div class="screenshots-grid">
-                <img src="/telas (4).jpeg" alt="Screenshot 4: Edição de links rápida" data-large="/telas (4).jpeg" class="screenshot-item">
-                <img src="/telas (1).jpeg" alt="Screenshot 1: Tela de configuração do BioLink" data-large="/telas (1).jpeg" class="screenshot-item">
-                <img src="/telas (2).jpeg" alt="Screenshot 2: Visualização de temas" data-large="/telas (2).jpeg" class="screenshot-item">
-                <img src="/telas (3).jpeg" alt="Screenshot 3: Dashboard de métricas" data-large="/telas (3).jpeg" class="screenshot-item">
-            </div>
-        </div>
-    </section>
-
-    <div id="modal" class="modal">
-        <span class="modal-close">&times;</span>
-        <img class="modal-content" id="modal-image" alt="Imagem Ampliada">
+  <!-- ==================== HEADER ==================== -->
+  <header class="header">
+    <div class="container header-content">
+      <div class="logo">Flash Cards<span>App</span></div>
+      <nav class="nav" id="nav">
+        <a href="#hero">Início</a>
+        <a href="#features">Recursos</a>
+        <a href="#gallery">Galeria</a>
+      </nav>
+      <button class="mobile-menu-btn" id="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
+  </header>
 
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-info">
-                <p>&copy; 2025 Flash Card App. Todos os direitos reservados.</p>
-                <p>Desenvolvido com <i class="fas fa-heart" style="color: #FF6584;"></i> e Tecnologia.</p>
-            </div>
-            <div class="social-icons">
-                <a href="#" aria-label="Instagram BioLink"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="Twitter BioLink"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="LinkedIn BioLink"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+  <!-- ==================== HERO SECTION ==================== -->
+  <section id="hero" class="hero">
+    <div class="container" style="display: flex; align-items: center;">
+      <div class="hero-content">
+        <h1 class="main-title animate-slide-up">
+          Seu Estudo Mais Eficaz: <br>Chegou o Flash Cards App!
+        </h1>
+        <p class="subtitle animate-slide-up">
+          Estamos finalizando o app para revolucionar seus estudos.
+          <strong>Ajude-nos a testar</strong> a versão beta e contribua com melhorias.
+        </p>
+        <div class="email-form-container glassmorphism animate-slide-up">
+          <form id="email-form" class="email-form">
+            <input type="email" id="email" name="email" placeholder="Seu melhor e-mail para acesso" required
+              aria-label="Endereço de e-mail">
+            <button type="submit" class="cta-button" id="cta-button">
+              <i class="fas fa-rocket"></i> Quero Acesso Antecipado!
+            </button>
+          </form>
+          <p id="form-message" class="form-message" aria-live="polite"></p>
         </div>
-    </footer>
+      </div>
 
-    <script src="script.js"></script>
+      <div class="hero-image">
+        <div class="phone-mockup">
+          <div class="phone-screen">
+            <img src="/icon.png" alt="Ícone do app" />
+            <h3>Flash Cards</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURES ==================== -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">O que o Flash Cards Oferece?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <i class="fas fa-book-open"></i>
+          <h3>Criação Ilimitada</h3>
+          <p>Crie quantos flash cards precisar para dominar todas as suas matérias.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-mobile-alt"></i>
+          <h3>Estude Onde Estiver</h3>
+          <p>Seus flash cards disponíveis no celular, para estudar a qualquer hora e lugar.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-chart-pie"></i>
+          <h3>Acompanhe seu Progresso</h3>
+          <p>Tenha métricas claras sobre seu desempenho e o que precisa revisar mais a fundo.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-comments"></i>
+          <h3>Sua Ajuda é Vital</h3>
+          <p>Ao ser um testador, suas sugestões e feedbacks serão cruciais para o lançamento final!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== GALLERY ==================== -->
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <div class="screenshots-grid">
+        <img src="/telas (4).jpeg" alt="Edição de links rápida" data-large="/telas (4).jpeg" class="screenshot-item">
+        <img src="/telas (1).jpeg" alt="Tela de configuração" data-large="/telas (1).jpeg" class="screenshot-item">
+        <img src="/telas (2).jpeg" alt="Visualização de temas" data-large="/telas (2).jpeg" class="screenshot-item">
+        <img src="/telas (3).jpeg" alt="Dashboard de métricas" data-large="/telas (3).jpeg" class="screenshot-item">
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MODAL ==================== -->
+  <div id="modal" class="modal">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="modal-image" alt="Imagem Ampliada">
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-info">
+        <p>&copy; 2025 Flash Cards App. Todos os direitos reservados.</p>
+        <p>Desenvolvido com <i class="fas fa-heart" style="color: #FF6584;"></i> e Tecnologia.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPT PRINCIPAL ==================== -->
+  <script src="script.js"></script>
 </body>
 </html>
