@@ -19,7 +19,7 @@ body {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     color: var(--dark);
     line-height: 1.6;
-    overflow-x: hidden; /* Importante: previne scroll horizontal */
+    overflow-x: hidden;
 }
 
 .container {
@@ -106,14 +106,14 @@ body {
     align-items: center;
     min-height: 100vh;
     width: 100%;
-    overflow: hidden; /* Importante: contém elementos filhos */
+    overflow: hidden;
 }
 
 .hero .container {
     display: flex;
     align-items: center;
     width: 100%;
-    max-width: 100%; /* Permite que o container se ajuste */
+    max-width: 100%;
     padding: 2rem;
 }
 
@@ -229,29 +229,25 @@ body {
     position: relative;
     overflow: hidden;
     border: 10px solid #2E3A59;
-    max-width: 100%; /* Garante que não ultrapasse o container */
+    max-width: 100%;
 }
 
 .phone-screen {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #6C63FF, #FF6584);
+    background: white; /* Fundo branco */
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    color: white;
-    text-align: center;
+    flex-direction: column;
 }
 
-.phone-screen h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.phone-screen p {
-    font-size: 0.9rem;
+.phone-screen img {
+    width: 70%;
+    max-width: 200px;
+    height: auto;
+    object-fit: contain;
 }
 
 /* Features Section */
@@ -496,7 +492,6 @@ body {
         text-align: center;
     }
     
-    /* Correção para a seção Features em mobile */
     .features {
         padding: 60px 0;
         width: 100%;
@@ -546,17 +541,13 @@ body {
     
     .phone-screen {
         padding: 1.5rem;
+
     }
     
-    .phone-screen h3 {
-        font-size: 1.2rem;
+    .phone-screen img {
+        max-width: 150px;
     }
     
-    .phone-screen p {
-        font-size: 0.8rem;
-    }
-    
-    /* Ajustes adicionais para mobile muito pequeno */
     .features .container {
         padding: 0 10px;
     }
@@ -575,7 +566,6 @@ body {
     }
 }
 
-/* Correção extra para telas muito pequenas */
 @media (max-width: 400px) {
     .phone-mockup {
         width: 200px;
@@ -592,5 +582,9 @@ body {
     
     .hero-content {
         padding: 0 10px;
+    }
+    
+    .phone-screen img {
+        max-width: 120px;
     }
 }
