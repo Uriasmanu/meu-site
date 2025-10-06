@@ -3,725 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BioApp - Sua Biografia Digital Profissional</title>
-    <meta name="description" content="Crie uma biografia digital impressionante para destacar sua trajetória profissional e conectar-se com oportunidades.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #10b981;
-            --accent: #f59e0b;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --gray-light: #e2e8f0;
-            --glass: rgba(255, 255, 255, 0.1);
-            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            overflow-x: hidden;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .logo i {
-            font-size: 1.8rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 150px 0 100px;
-            text-align: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 0 0 30px 30px;
-            margin-bottom: 80px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            opacity: 0.9;
-        }
-
-        /* Email Collection */
-        .email-form {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .email-input {
-            flex: 1;
-            min-width: 300px;
-            padding: 15px 20px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .email-input:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
-        }
-
-        .btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-            box-shadow: var(--shadow);
-        }
-
-        .btn-primary:hover {
-            background: #e6900b;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.3);
-        }
-
-        .confirmation-message {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            display: none;
-        }
-
-        /* Features Section */
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 15px;
-        }
-
-        .section-title p {
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .features {
-            padding: 80px 0;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: white;
-            font-size: 1.8rem;
-        }
-
-        .feature-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-
-        .feature-card p {
-            color: var(--gray);
-        }
-
-        /* Gallery Section */
-        .gallery {
-            padding: 80px 0;
-            background: var(--light);
-            border-radius: 30px;
-            margin-bottom: 80px;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            position: relative;
-            cursor: pointer;
-            transition: var(--transition);
-            aspect-ratio: 9/16;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .modal-content {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .close-modal:hover {
-            color: var(--accent);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 60px 0 30px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-column h3 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background: var(--accent);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: var(--gray-light);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: var(--glass);
-            border-radius: 50%;
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--gray-light);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .hero {
-                padding: 120px 0 80px;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .email-form {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .email-input {
-                min-width: 100%;
-            }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .section-title h2 {
-                font-size: 2rem;
-            }
-
-            .feature-card {
-                padding: 20px;
-            }
-        }
-    </style>
+    <title>BioLink App - Sua Biografia Dinâmica e Moderna</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Transforme sua biografia em uma central de links moderna. Junte-se à lista de espera do BioLink App e otimize sua presença online.">
+    <meta name="keywords" content="biografia, link na bio, landing page, app, redes sociais, marketing digital">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">
-                    <i class="fas fa-user-circle"></i>
-                    BioApp
-                </a>
-                <div class="nav-links">
-                    <a href="#features">Recursos</a>
-                    <a href="#gallery">Galeria</a>
-                    <a href="#contact">Contato</a>
-                </div>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
-        </div>
+
+    <header class="header">
+        <div class="logo">BioLink **App**</div>
+        <nav class="nav">
+            <a href="#hero">Início</a>
+            <a href="#features">Recursos</a>
+            <a href="#gallery">Galeria</a>
+        </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Crie uma Biografia Digital que Impressiona</h1>
-            <p>Destaque sua trajetória profissional, compartilhe suas conquistas e conecte-se com oportunidades de forma elegante e moderna.</p>
-            
-            <!-- Email Collection -->
-            <div class="email-form">
-                <input type="email" class="email-input" placeholder="Seu melhor e-mail" required>
-                <button class="btn btn-primary" id="submit-btn">
-                    <i class="fas fa-rocket"></i> Quero Testar
-                </button>
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1 class="main-title">Revolucione sua Bio: **Um Link, Todos os Seus Mundos**</h1>
+            <p class="subtitle">A plataforma mais moderna e dinâmica para unificar todos os seus links e projetos em um só lugar.</p>
+
+            <div class="email-form-container glassmorphism">
+                <form id="email-form" class="email-form">
+                    <input type="email" id="email" name="email" placeholder="Seu melhor e-mail para acesso" required aria-label="Endereço de e-mail">
+                    <button type="submit" class="cta-button" id="cta-button">
+                        <i class="fas fa-rocket"></i> **Quero Acesso Antecipado!**
+                    </button>
+                </form>
+                <p id="form-message" class="form-message" aria-live="polite"></p>
             </div>
-            <div class="confirmation-message" id="confirmation">
-                <i class="fas fa-check-circle"></i> Obrigado! Em breve você receberá mais informações.
+        </div>
+        <div class="hero-image-placeholder">
+            </div>
+    </section>
+
+    <section id="features" class="features">
+        <h2>Por Que Escolher BioLink?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-palette"></i>
+                <h3>Design Personalizado</h3>
+                <p>Crie uma biografia que realmente reflita sua marca com temas e cores exclusivas.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Estatísticas Detalhadas</h3>
+                <p>Acompanhe o desempenho de cada link e saiba o que engaja mais o seu público.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Responsividade Total</h3>
+                <p>Sua biografia fica impecável em qualquer dispositivo: celular, tablet ou desktop.</p>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Recursos Incríveis</h2>
-                <p>Descubra como o BioApp pode transformar sua presença digital profissional</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h3>Design Personalizado</h3>
-                    <p>Crie uma biografia com sua identidade visual, escolhendo entre diversos templates modernos.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Totalmente Responsivo</h3>
-                    <p>Seu perfil ficará perfeito em qualquer dispositivo, do smartphone ao desktop.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Análises de Visualização</h3>
-                    <p>Saiba quem está visitando seu perfil e obtenha insights valiosos sobre seu público.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-share-alt"></i>
-                    </div>
-                    <h3>Compartilhamento Fácil</h3>
-                    <p>Compartilhe sua biografia com um link único em todas as suas redes sociais.</p>
-                </div>
-            </div>
+    <section id="gallery" class="gallery">
+        <h2>Veja o BioLink em Ação</h2>
+        <div class="screenshots-grid">
+            <img src="https://via.placeholder.com/300x550/2E3A59/FFFFFF?text=Tela+1+(Setup)" alt="Screenshot 1: Tela de configuração do BioLink" data-large="https://via.placeholder.com/800x1200/2E3A59/FFFFFF?text=Tela+1+Ampliada" class="screenshot-item">
+            <img src="https://via.placeholder.com/300x550/3A4E78/FFFFFF?text=Tela+2+(Tema)" alt="Screenshot 2: Visualização de temas" data-large="https://via.placeholder.com/800x1200/3A4E78/FFFFFF?text=Tela+2+Ampliada" class="screenshot-item">
+            <img src="https://via.placeholder.com/300x550/4B689C/FFFFFF?text=Tela+3+(Métrica)" alt="Screenshot 3: Dashboard de métricas" data-large="https://via.placeholder.com/800x1200/4B689C/FFFFFF?text=Tela+3+Ampliada" class="screenshot-item">
+            <img src="https://via.placeholder.com/300x550/5C82C0/FFFFFF?text=Tela+4+(Edição)" alt="Screenshot 4: Edição de links rápida" data-large="https://via.placeholder.com/800x1200/5C82C0/FFFFFF?text=Tela+4+Ampliada" class="screenshot-item">
+            <img src="https://via.placeholder.com/300x550/6D9BE4/FFFFFF?text=Tela+5+(Preview)" alt="Screenshot 5: Preview da biografia no celular" data-large="https://via.placeholder.com/800x1200/6D9BE4/FFFFFF?text=Tela+5+Ampliada" class="screenshot-item">
+            <img src="https://via.placeholder.com/300x550/7FAFFF/FFFFFF?text=Tela+6+(Controle)" alt="Screenshot 6: Central de controle de links" data-large="https://via.placeholder.com/800x1200/7FAFFF/FFFFFF?text=Tela+6+Ampliada" class="screenshot-item">
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="gallery" id="gallery">
-        <div class="container">
-            <div class="section-title">
-                <h2>Galeria de Screenshots</h2>
-                <p>Veja como o BioApp se apresenta em diferentes dispositivos</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Perfil profissional no BioApp">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Interface de edição do BioApp">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Visualização mobile do BioApp">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Dashboard de análises do BioApp">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1553028826-f4804a6dba3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Template personalizável do BioApp">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1551836026-d5c88ac5c4e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Integração com redes sociais no BioApp">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Modal for Image View -->
-    <div class="modal" id="imageModal">
-        <span class="close-modal">&times;</span>
-        <div class="modal-content">
-            <img id="modalImage" src="" alt="">
-        </div>
+    <div id="modal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modal-image" alt="Imagem Ampliada">
     </div>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Sobre o BioApp</h3>
-                    <p>Uma plataforma moderna para criar biografias digitais profissionais que destacam sua trajetória e conquistas.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Links Rápidos</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Início</a></li>
-                        <li><a href="#features">Recursos</a></li>
-                        <li><a href="#gallery">Galeria</a></li>
-                        <li><a href="#">Preços</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contato</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> contato@bioapp.com</li>
-                        <li><i class="fas fa-phone"></i> (11) 9999-9999</li>
-                        <li><i class="fas fa-map-marker-alt"></i> São Paulo, SP</li>
-                    </ul>
-                </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <p>&copy; 2025 BioLink App. Todos os direitos reservados.</p>
+                <p>Desenvolvido com <i class="fas fa-heart"></i> e Tecnologia.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 BioApp. Todos os direitos reservados.</p>
+            <div class="social-icons">
+                <a href="#" aria-label="Instagram BioLink"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter BioLink"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn BioLink"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Email Validation and Form Submission
-        document.getElementById('submit-btn').addEventListener('click', function() {
-            const emailInput = document.querySelector('.email-input');
-            const email = emailInput.value;
-            const confirmation = document.getElementById('confirmation');
-            
-            // Basic email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
-            if (emailRegex.test(email)) {
-                // Valid email
-                confirmation.style.display = 'block';
-                emailInput.value = '';
-                
-                // Hide confirmation after 5 seconds
-                setTimeout(() => {
-                    confirmation.style.display = 'none';
-                }, 5000);
-            } else {
-                // Invalid email
-                alert('Por favor, insira um endereço de e-mail válido.');
-                emailInput.focus();
-            }
-        });
-
-        // Gallery Modal
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        const modal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        const closeModal = document.querySelector('.close-modal');
-
-        galleryItems.forEach(item => {
-            item.addEventListener('click', function() {
-                const imgSrc = this.querySelector('img').src;
-                modalImage.src = imgSrc;
-                modal.style.display = 'flex';
-            });
-        });
-
-        closeModal.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
-
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-
-        // Mobile Menu Toggle
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-
-        mobileMenu.addEventListener('click', function() {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (window.innerWidth <= 768) {
-                        navLinks.style.display = 'none';
-                    }
-                }
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
